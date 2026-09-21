@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1789945736582,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (55) 555-55-55",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Набор кружек",
+        "price": 850,
+        "img": "http://127.0.0.1:5500/images/cup.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:08:56.582Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789945751266,
+    "name": "xxxx",
+    "surname": "xxxx",
+    "phone": "+380 (09) 999-99-99",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Диван",
+        "price": 15900,
+        "img": "http://127.0.0.1:5500/images/sofa.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:09:11.266Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789945765021,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-33",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Кровать",
+        "price": 12000,
+        "img": "http://127.0.0.1:5500/images/bed.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:09:25.021Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789945780066,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-33",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Картина",
+        "price": 4200,
+        "img": "http://127.0.0.1:5500/images/picture.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:09:40.066Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789945791300,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-33",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Стол",
+        "price": 7200,
+        "img": "http://127.0.0.1:5500/images/table.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:09:51.300Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789945804466,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-33",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Настольная лампа",
+        "price": 2990,
+        "img": "http://127.0.0.1:5500/images/lamp.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:10:04.466Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789945833815,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-76",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Сковорода",
+        "price": 1200,
+        "img": "http://127.0.0.1:5500/images/pan.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:10:33.815Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789947960605,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-33",
+    "delivery": "pickup",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Сковорода",
+        "price": 1200,
+        "img": "http://127.0.0.1:5500/images/pan.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-20T23:46:00.605Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  {
+    "id": 1789950220481,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-33",
+    "delivery": "nova",
+    "city": "kiev",
+    "branch": "4",
+    "cart": [
+      {
+        "name": "Сковорода",
+        "price": 1200,
+        "img": "http://127.0.0.1:5500/images/pan.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-09-21T00:23:40.481Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  }
+]

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Акция — скидки до 50%</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+
+
+
+<!-- Модальное окно корзины -->
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+  <div class="bg-white rounded-lg w-11/12 max-w-md h-[90vh] flex flex-col">
+    
+    <!-- Заголовок (фиксированный) -->
+    <div class="p-4 border-b shrink-0">
+      <h3 class="text-xl font-bold">Корзина</h3>
+    </div>
+
+    <!-- Прокручиваемая часть + футер -->
+    <div class="flex-1 overflow-y-auto p-4">
+      <div id="cartItems"></div>
+      <p id="cartTotal" class="font-bold mt-4">Итого: 0 ₽</p>
+
+      <!-- Форма оформления -->
+      <form id="checkoutForm" class="mt-4 space-y-2">
+        <input type="text" name="name" placeholder="Имя" class="w-full border p-2 rounded" required>
+        <input type="text" name="surname" placeholder="Фамилия" class="w-full border p-2 rounded" required>
+        <input type="tel" name="phone" placeholder="Телефон" class="w-full border p-2 rounded" required>
+        <input type="text" id="promoField" name="promo" placeholder="Введите промокод" class="w-full border p-2 rounded">
+
+        <select id="deliveryMethod" name="delivery" class="w-full border p-2 rounded" required>
+          <option value="">Выберите способ доставки</option>
+          <option value="courier">Курьер</option>
+          <option value="pickup">Самовывоз</option>
+          <option value="nova">Новая Почта</option>
+        </select>
+
+        <div id="novaFields" class="hidden space-y-2">
+          <input type="text" name="city" placeholder="Город" class="w-full border p-2 rounded">
+          <input type="text" name="branch" placeholder="Отделение" class="w-full border p-2 rounded">
+        </div>
+
+        <!-- Футер теперь внутри scrollable -->
+        <div class="mt-6 border-t pt-4">
+          <button type="submit" class="w-full bg-yellow-700 text-white py-2 rounded">Оформить заказ</button>
+          <button type="button" onclick="closeCart()" class="mt-3 text-red-600 w-full">Закрыть</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+ <!-- Контейнер для алертов -->
+  <div id="alertContainer" style="position:fixed; top:20px; right:20px; z-index: 9999999;"></div>
+  
+  <!-- Хедер -->
+  <header class="bg-yellow-700 text-white py-4 text-center shadow"> 
+    <h1 class="text-2xl font-bold">Акция недели — скидки до 50%</h1>
+  </header>
+
+  <!-- Баннер -->
+  <section class="py-12 text-center">
+    <h2 class="text-3xl font-semibold mb-4">Успей купить выгодно!</h2>
+    <p class="text-lg mb-6">Только до конца недели — лучшие товары по суперцене.</p>
+    <a href="#sale-products" class="btn-main no-underline">
+      Смотреть товары
+    </a>
+    <!-- Кнопка для промокода -->
+    <button id="promoBtn" class="btn-main mt-4">
+      Получить промокод
+    </button>
+  </section>
+
+<!-- Модальное окно -->
+<div id="promoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden overflow-y-auto">
+  <div class="flex items-center justify-center min-h-screen px-4 py-10">
+    <div class="promo-box rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
+
+      <h3 class="text-xl font-semibold mb-4">🎁 Ваш промокод</h3>
+      <p class="text-2xl font-bold text-green-600 mb-4">DOM50</p>
+      <p class="text-gray-600 mb-6">Используйте этот код при покупке и получите скидку 50%!</p>
+      <button id="closeModal" class="btn-main">
+        Закрыть
+      </button>
+    </div>
+  </div>
+</div>
+
+ <!-- Товары по акции -->
+<section id="sale-products" class="py-12 text-center">
+  <h2 class="text-2xl font-semibold mb-6">Товары со скидкой</h2>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
+    
+    <!-- Карточка 1 -->
+    <div class="product-card bg-white p-4 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1" data-stock="true">
+      <img src="images/pan.png" alt="Сковорода" class="rounded mb-3">
+      <p class="font-medium">Сковорода</p>
+      <p class="line-through text-gray-400">2 400 ₽</p>
+      <p class="text-green-600 font-bold">1 200 ₽</p>
+      <button class="btn-main mt-3">Купить</button>
+    </div>
+</section>
+
+<!-- Секция рекламы -->
+<section id="ads" class="py-12 bg-yellow-100 text-center">
+  <h2 class="text-2xl font-semibold mb-6">🔥 Специальные предложения 🔥</h2>
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+
+    <!-- Карточка рекламы 1 -->
+    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1">
+      <img src="images/banner1.png" alt="Скидка на мебель" class="rounded mb-3">
+      <h3 class="font-bold mb-2">Скидка на мебель</h3>
+      <p class="text-gray-600 mb-3">До конца месяца скидки до 40%.</p>
+      <a href="https://www.ikea.com/ua/uk/cat/furniture-fu001/" class="btn-main" target="_blank">Подробнее</a>
+    </div>
+
+    <!-- Карточка рекламы 2 -->
+    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1">
+      <img src="images/banner2.png" alt="Техника для кухни" class="rounded mb-3">
+      <h3 class="font-bold mb-2">Техника для кухни</h3>
+      <p class="text-gray-600 mb-3">Специальные цены на бытовую технику.</p>
+      <a href="https://prom.ua/ua/Tehnika-dlya-kuhni" class="btn-main" target="_blank">Подробнее</a>
+    </div>
+
+    <!-- Карточка рекламы 3 -->
+    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1">
+      <img src="images/banner3.png" alt="Освещение" class="rounded mb-3">
+      <h3 class="font-bold mb-2">Освещение</h3>
+      <p class="text-gray-600 mb-3">Лампы и светильники со скидкой до 50%.</p>
+      <a href="https://rozetka.com.ua/lighting/c4626639/" class="btn-main" target="_blank">Подробнее</a>
+    </div>
+
+  </section>
+</section>
+
+
+
+<!-- Секция видеороликов -->
+<section id="videos" class="py-12 text-center">
+  <h2 class="text-2xl font-semibold mb-6">🎬 Наши видео</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6">
+    <div class="aspect-video">
+      <iframe 
+        class="w-full rounded-lg shadow"
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="Видео 1"
+        frameborder="0"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <div class="aspect-video">
+      <iframe 
+        class="w-full rounded-lg shadow"
+        src="https://www.youtube.com/embed/VIDEO_ID2"
+        title="Видео 2"
+        frameborder="0"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Секция FAQ -->
+<section id="faq" class="py-12 bg-gray-100">
+  <h2 class="text-2xl font-semibold mb-6 text-center">❓ Частые вопросы</h2>
+  <div class="max-w-3xl mx-auto space-y-4">
+    <details class="bg-white p-4 rounded shadow">
+      <summary class="font-bold cursor-pointer">Как осуществляется доставка?</summary>
+      <p class="mt-2 text-gray-600">Мы доставляем через Новую Почту, курьером или самовывозом. Сроки зависят от региона.</p>
+    </details>
+    <details class="bg-white p-4 rounded shadow">
+      <summary class="font-bold cursor-pointer">Какие способы оплаты доступны?</summary>
+      <p class="mt-2 text-gray-600">Вы можете оплатить картой онлайн, наложенным платежом или наличными при самовывозе.</p>
+    </details>
+    <details class="bg-white p-4 rounded shadow">
+      <summary class="font-bold cursor-pointer">Можно ли вернуть товар?</summary>
+      <p class="mt-2 text-gray-600">Да, возврат возможен в течение 14 дней при сохранении товарного вида и упаковки.</p>
+    </details>
+  </div>
+</section>
+
+<!-- Секция QR-кода -->
+<section id="qr" class="py-12 bg-gray-100 text-center">
+  <h2 class="text-2xl font-semibold mb-6">📱 Быстрый доступ 📱</h2>
+  <p class="mb-4">Отсканируйте QR‑код, чтобы перейти в наш интернет‑магазин.</p>
+  
+  <!-- QR-код -->
+  <img src="images/qr-kod.png" alt="QR-код для перехода в магазин"
+       width="160" height="160"
+       class="mx-auto w-40 h-40 object-cover shadow-lg rounded mb-6"
+       loading="lazy">
+  
+  <!-- Кнопка -->
+  <a href="https://example.com" 
+     class="btn-main inline-block">Перейти в магазин</a>
+</section>
+
+<!-- Секция Google-карты -->
+<section id="map" class="py-12 text-center bg-gray-100">
+  <h2 class="text-2xl font-semibold mb-6">📍 Наш магазин 📍</h2>
+  <p class="mb-4">Приходите к нам лично или закажите самовывоз.</p>
+  
+  <div class="mx-auto w-full md:w-3/4 aspect-video rounded-lg shadow overflow-hidden">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=ВАШ_EMBED_URL" 
+      class="w-full h-full" 
+      style="border:0;" 
+      allowfullscreen 
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<!-- Messenger Chat Plugin -->
+<div id="fb-root"></div>
+<div id="fb-customer-chat" class="fb-customerchat"></div>
+
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "ВАШ_PAGE_ID"); // замените на ID вашей страницы
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml: true,
+      version: 'v17.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/ru_RU/sdk/xfbml.customerchat.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Футер -->
+<footer class="bg-gray-800 text-white py-6 mt-12">
+  <div class="flex flex-col md:flex-row justify-between items-center max-w-4xl mx-auto px-4">
+    <p class="mb-4 md:mb-0">© 2026 ДомShop — Все права защищены</p>
+    <a href="index.html" class="btn-main">На главную</a>
+  </div>
+</footer>
+
+
+<script src="inputmask.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

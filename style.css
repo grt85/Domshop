@@ -1,0 +1,710 @@
+/* === Общие стили === */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #fdfdfd;
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* === Hero === */
+.hero {
+  background-image: url('images/hero.png');
+  background-size: cover;
+  background-position: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* === Кнопки === */
+button {
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: scale(1.05);
+}
+.btn-main {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #a16207;
+  color: #fff;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+}
+.btn-main:hover {
+  background-color: #ca8a04;
+}
+
+/* === Категории === */
+.category-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.category-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+/* === Товары === */
+.product-card img {
+  transition: transform 0.3s ease;
+}
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* === Акция === */
+.sale-banner {
+  background: linear-gradient(135deg, #d4f8d4, #b2f0b2);
+  color: #1a1a1a;
+}
+
+/* === Отзывы === */
+.review-card {
+  border-left: 4px solid #a37d16;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.review-card:hover {
+  transform: scale(1.02);
+}
+
+/* === Подписка === */
+form input[type="email"] {
+  border: 2px solid #a37d16;
+  outline: none;
+}
+form input[type="email"]:focus {
+  border-color: #a37d16;
+}
+
+/* === Футер === */
+footer {
+  background-color: #1f2937;
+  color: #fff;
+}
+footer p {
+  opacity: 0.9;
+}
+
+/* === Scroll === */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Кнопка "Наверх" */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #37a316;
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#scrollTopBtn.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+#scrollTopBtn.bounce {
+  animation: bounce 0.6s;
+}
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.2); }
+  50%  { transform: scale(0.9); }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* === Бургер === */
+#menu-btn {
+  display: none;
+  cursor: pointer;
+}
+.burger-line {
+  display: block;
+  height: 2px;
+  width: 28px;
+  background-color: #a37d16;
+  border-radius: 2px;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+#menu-btn:hover .burger-line {
+  background-color: #d4a017;
+}
+#menu-btn.open .burger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-btn.open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+#menu-btn.open .burger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* === Мобильное меню === */
+#mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 64px);
+  background: #fff;
+  z-index: 999;
+  display: none;
+  overflow-y: auto;
+}
+#mobile-menu.active {
+  display: block;
+}
+
+/* === Media Queries === */
+@media screen and (max-width: 768px) {
+  #menu-btn { display: block; }
+  nav ul { display: none; }
+}
+
+/* === Модальное окно корзины === */
+#cartModal .bg-white {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+#cartModal .scrollable {
+  flex: 1;
+  overflow-y: auto;
+}
+#cartModal.show .bg-white {
+  animation: modalFadeIn 0.3s ease forwards;
+}
+#cartModal.hide .bg-white {
+  animation: modalFadeOut 0.3s ease forwards;
+}
+
+/* === Модальное окно промокода === */
+#promoModal .promo-box {
+  background-color: #fff;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* === Анимации === */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes modalFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.95); }
+}
+
+
+
+.alert {
+  background-color: #a16207;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 500;
+  margin-bottom: 8px;
+  opacity: 1;
+}
+/* === Общие стили === */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #fdfdfd;
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* === Hero === */
+.hero {
+  background-image: url('images/hero.png');
+  background-size: cover;
+  background-position: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* === Кнопки === */
+button {
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: scale(1.05);
+}
+.btn-main {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #a16207;
+  color: #fff;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+}
+.btn-main:hover {
+  background-color: #ca8a04;
+}
+
+/* === Категории === */
+.category-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.category-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+/* === Товары === */
+.product-card img {
+  transition: transform 0.3s ease;
+}
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* === Акция === */
+.sale-banner {
+  background: linear-gradient(135deg, #d4f8d4, #b2f0b2);
+  color: #1a1a1a;
+}
+
+/* === Отзывы === */
+.review-card {
+  border-left: 4px solid #a37d16;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.review-card:hover {
+  transform: scale(1.02);
+}
+
+/* === Подписка === */
+form input[type="email"] {
+  border: 2px solid #a37d16;
+  outline: none;
+}
+form input[type="email"]:focus {
+  border-color: #a37d16;
+}
+
+/* === Футер === */
+footer {
+  background-color: #1f2937;
+  color: #fff;
+}
+footer p {
+  opacity: 0.9;
+}
+
+/* === Scroll === */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Кнопка "Наверх" */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #37a316;
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#scrollTopBtn.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+#scrollTopBtn.bounce {
+  animation: bounce 0.6s;
+}
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.2); }
+  50%  { transform: scale(0.9); }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* === Бургер === */
+#menu-btn {
+  display: none;
+  cursor: pointer;
+}
+.burger-line {
+  display: block;
+  height: 2px;
+  width: 28px;
+  background-color: #a37d16;
+  border-radius: 2px;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+#menu-btn:hover .burger-line {
+  background-color: #d4a017;
+}
+#menu-btn.open .burger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-btn.open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+#menu-btn.open .burger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* === Мобильное меню === */
+#mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 64px);
+  background: #fff;
+  z-index: 999;
+  display: none;
+  overflow-y: auto;
+}
+#mobile-menu.active {
+  display: block;
+}
+
+/* === Media Queries === */
+@media screen and (max-width: 768px) {
+  #menu-btn { display: block; }
+  nav ul { display: none; }
+}
+
+/* === Модальное окно корзины === */
+#cartModal .bg-white {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+#cartModal .scrollable {
+  flex: 1;
+  overflow-y: auto;
+}
+#cartModal.show .bg-white {
+  animation: modalFadeIn 0.3s ease forwards;
+}
+#cartModal.hide .bg-white {
+  animation: modalFadeOut 0.3s ease forwards;
+}
+
+/* === Модальное окно промокода === */
+#promoModal .promo-box {
+  background-color: #fff;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* === Анимации === */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes modalFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.95); }
+}
+
+
+
+.alert {
+  background-color: #a16207;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 500;
+  margin-bottom: 8px;
+  opacity: 1;
+}
+/* === Общие стили === */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #fdfdfd;
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* === Hero === */
+.hero {
+  background-image: url('images/hero.png');
+  background-size: cover;
+  background-position: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* === Кнопки === */
+button {
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: scale(1.05);
+}
+.btn-main {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #a16207;
+  color: #fff;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+}
+.btn-main:hover {
+  background-color: #ca8a04;
+}
+
+/* === Категории === */
+.category-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.category-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+/* === Товары === */
+.product-card img {
+  transition: transform 0.3s ease;
+}
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* === Акция === */
+.sale-banner {
+  background: linear-gradient(135deg, #d4f8d4, #b2f0b2);
+  color: #1a1a1a;
+}
+
+/* === Отзывы === */
+.review-card {
+  border-left: 4px solid #a37d16;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.review-card:hover {
+  transform: scale(1.02);
+}
+
+/* === Подписка === */
+form input[type="email"] {
+  border: 2px solid #a37d16;
+  outline: none;
+}
+form input[type="email"]:focus {
+  border-color: #a37d16;
+}
+
+/* === Футер === */
+footer {
+  background-color: #1f2937;
+  color: #fff;
+}
+footer p {
+  opacity: 0.9;
+}
+
+/* === Scroll === */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Кнопка "Наверх" */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #37a316;
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#scrollTopBtn.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+#scrollTopBtn.bounce {
+  animation: bounce 0.6s;
+}
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.2); }
+  50%  { transform: scale(0.9); }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* === Бургер === */
+#menu-btn {
+  display: none;
+  cursor: pointer;
+}
+.burger-line {
+  display: block;
+  height: 2px;
+  width: 28px;
+  background-color: #a37d16;
+  border-radius: 2px;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+#menu-btn:hover .burger-line {
+  background-color: #d4a017;
+}
+#menu-btn.open .burger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-btn.open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+#menu-btn.open .burger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* === Мобильное меню === */
+#mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 64px);
+  background: #fff;
+  z-index: 999;
+  display: none;
+  overflow-y: auto;
+}
+#mobile-menu.active {
+  display: block;
+}
+
+/* === Media Queries === */
+@media screen and (max-width: 768px) {
+  #menu-btn { display: block; }
+  nav ul { display: none; }
+}
+
+/* === Модальное окно корзины === */
+#cartModal .bg-white {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+#cartModal .scrollable {
+  flex: 1;
+  overflow-y: auto;
+}
+#cartModal.show .bg-white {
+  animation: modalFadeIn 0.3s ease forwards;
+}
+#cartModal.hide .bg-white {
+  animation: modalFadeOut 0.3s ease forwards;
+}
+
+/* === Модальное окно промокода === */
+#promoModal .promo-box {
+  background-color: #fff;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* === Анимации === */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes modalFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.95); }
+}
+
+
+
+.alert {
+  background-color: #a16207;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 500;
+  margin-bottom: 8px;
+   opacity: 1;
+}
+.alert.success { background: linear-gradient(135deg, #2da316, #37c920); }
+.alert.error   { background: linear-gradient(135deg, #dc2626, #f03a3a); }
+
+.animate-fadeIn { animation: fadeIn 0.4s forwards; }
+.animate-fadeOut { animation: fadeOut 0.4s forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-10px); }
+}
+
+
+#alertContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999999;
+}
+
