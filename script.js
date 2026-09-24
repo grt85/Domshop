@@ -180,7 +180,7 @@ if (form && emailInput && messageEl) {
       return;
     }
     try {
-      const res = await fetch("http://localhost:3000/subscribe", {
+      const res = await fetch("https://domshop.onrender.com/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email })
@@ -425,7 +425,7 @@ document.getElementById("checkoutForm").addEventListener("submit", async (e) => 
   }
 
   try {
-    const response = await fetch("http://localhost:3000/order", {
+    const response = await fetch("https://domshop.onrender.com/order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(orderData)
