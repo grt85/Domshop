@@ -10,6 +10,12 @@ const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static(path.join(__dirname)));
+
+// Кореневий маршрут "/" → index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 app.use(cors({
   origin: ["http://127.0.0.1:5500", "http://localhost:5500"],
