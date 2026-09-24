@@ -18,10 +18,15 @@ app.get("/", (req, res) => {
 });
 
 app.use(cors({
-  origin: ["http://127.0.0.1:5500", "http://localhost:5500"],
+  origin: [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "https://domshop.onrender.com"
+  ],
   methods: ["GET", "POST", "DELETE"],
   allowedHeaders: ["Content-Type"]
 }));
+
 
 app.use(express.json());
 
