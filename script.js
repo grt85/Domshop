@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const countdownEl = document.getElementById('countdown');
 const saleBtn = document.getElementById('saleBtn');
 if (countdownEl && saleBtn) {
-  const deadline = new Date("2026-09-30T23:59:59");
+  const deadline = new Date("2026-10-30T23:59:59");
   function updateCountdown() {
     const now = new Date();
     const diff = deadline - now;
