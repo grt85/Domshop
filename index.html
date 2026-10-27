@@ -509,10 +509,49 @@
 </button>
 
 
+<!-- Overlay -->
+<div id="chat-overlay" class="hidden fixed inset-0 bg-black bg-opacity-30"></div>
+
+<!-- Кнопка-іконка чату -->
+<div id="chat-toggle"
+     class="fixed bottom-6 left-6 px-4 h-14 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer font-bold">
+  Bot Shop
+</div>
+
+<!-- Віджет чату -->
+<div id="chat-widget" class="hidden flex flex-col fixed bg-white shadow-lg rounded-md w-80 h-96 bottom-20 left-6">
+  <!-- Header -->
+  <div id="chat-header" class="flex items-center justify-between p-2 text-white bg-gradient-to-r from-blue-600 to-purple-600">
+    <span>💬 Онлайн‑помічник</span>
+    <div class="flex items-center gap-2">
+      <!-- Перемикач мов -->
+      
+      <button id="chat-close" class="px-2 text-lg font-bold">✖</button>
+    </div>
+  </div>
+
+  <!-- Повідомлення -->
+  <div id="chat-messages" class="flex-1 p-3 overflow-y-auto text-sm bg-gray-50"></div>
+
+  <!-- Меню -->
+  <div id="chat-menu" class="border-t p-2 flex flex-wrap bg-gray-100"></div>
+
+  <!-- Поле вводу -->
+  <div class="chat-input-area border-t flex bg-white">
+    <input id="chat-input" type="text" placeholder="Ваше питання..." class="flex-1 p-2 outline-none">
+    <button id="chat-send" type="button" class="px-3 bg-blue-600 text-white">➤</button>
+  </div>
+</div>
+
+
+  
 
 <script src="inputmask.min.js"></script>
+<script type="module" src="./frontend.js"></script>
 
 <script src="script.js"></script>
+
+
 
 </body>
 </html>
