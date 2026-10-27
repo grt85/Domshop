@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1792344519863,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-76",
+    "delivery": "courier",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Сковорода",
+        "price": 1200,
+        "img": "http://127.0.0.1:5500/images/pan.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-10-18T17:28:39.863Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "id": 1792344886794,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-76",
+    "delivery": "courier",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Сковорода",
+        "price": 1200,
+        "img": "http://127.0.0.1:5500/images/pan.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-10-18T17:34:46.794Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "id": 1792430645262,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-76",
+    "delivery": "courier",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Сковорода",
+        "price": 1200,
+        "img": "http://127.0.0.1:5500/images/pan.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-10-19T17:24:05.262Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "id": 1792446783660,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-33",
+    "delivery": "courier",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Торшер",
+        "price": 2800,
+        "img": "http://127.0.0.1:5500/images/lamp.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-10-19T21:53:03.660Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "id": 1792450079294,
+    "name": "ddgdfgdfdf",
+    "surname": "bdbcbcb",
+    "phone": "+380 (06) 653-13-76",
+    "delivery": "courier",
+    "city": null,
+    "branch": null,
+    "cart": [
+      {
+        "name": "Сковорода",
+        "price": 1200,
+        "img": "http://127.0.0.1:5500/images/pan.png",
+        "qty": 1
+      }
+    ],
+    "date": "2026-10-19T22:47:59.294Z",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  }
+]
