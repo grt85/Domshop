@@ -708,3 +708,273 @@ section {
   z-index: 9999999;
 }
 
+
+
+
+
+/* Віджет */
+#chat-widget {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#chat-widget.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Header */
+#chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(270deg, #2563eb, #7c3aed, #06b6d4);
+  background-size: 600% 600%;
+  animation: gradientShift 8s ease infinite;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+#chat-close {
+  transition: color 0.3s ease;
+}
+#chat-close:hover {
+  color: #f87171;
+}
+
+/* Повідомлення */
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+/* Меню */
+#chat-menu {
+  flex-shrink: 0;
+  padding: 8px;
+  border-top: 1px solid #ddd;
+  background: #fafafa;
+}
+
+/* Поле вводу */
+.chat-input-area {
+  display: flex;
+  padding: 8px;
+  border-top: 1px solid #ddd;
+  background: #fff;
+  flex-shrink: 0;
+}
+#chat-input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px;
+}
+#chat-send {
+  margin-left: 8px;
+  padding: 6px 12px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Десктоп */
+@media (min-width: 769px) {
+  #chat-widget {
+    width: 320px;
+    height: 420px;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 8px;
+    position: fixed;
+    transform: translateY(100%);
+  }
+  #chat-widget.active {
+    transform: translateY(0);
+  }
+}
+
+/* Мобільні */
+@media (max-width: 768px) {
+  #chat-widget {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    border-radius: 0;
+    background: #fff;
+    transform: translateY(100%);
+    z-index: 9999;
+    transition: transform 0.5s cubic-bezier(0.25, 1.25, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+  }
+  #chat-widget.active {
+    transform: translateY(0);
+  }
+
+  /* Header */
+  #chat-header {
+    flex-shrink: 0;
+    height: 56px; /* компактна висота */
+  }
+
+  /* Меню */
+  #chat-menu {
+    flex-shrink: 0;
+    height: 40px; /* мінімальна висота */
+    overflow-x: auto;
+  }
+
+  /* Повідомлення */
+  #chat-messages {
+    flex: 1; /* займає весь простір */
+    overflow-y: auto;
+    padding: 12px;
+    background: #f9f9f9;
+  }
+
+  /* Поле вводу */
+  .chat-input-area {
+    flex-shrink: 0;
+    height: 56px; /* фіксована висота */
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+  }
+  #chat-input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px;
+  }
+  #chat-send {
+    margin-left: 8px;
+    padding: 6px 12px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+}
+
+
+
+/* Анімації */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.message { animation: fadeIn 0.3s ease forwards; }
+
+
+
+
+#chat-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 9998;
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease,
+              background 180s ease; /* 👈 плавний перехід ~3 хвилини */
+  backdrop-filter: blur(6px);
+}
+
+#chat-overlay.day {
+  background: linear-gradient(to bottom,
+              rgba(0,128,255,0.5) 0%,
+              rgba(0,255,200,0.3) 50%,
+              rgba(0,128,255,0.2) 100%);
+}
+
+#chat-overlay.night {
+  background: linear-gradient(to bottom,
+              rgba(0,0,0,0.6) 0%,
+              rgba(50,50,50,0.4) 50%,
+              rgba(0,0,0,0.2) 100%);
+}
+
+#chat-overlay.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+#chat-overlay {
+  --overlay-color1: rgba(0,128,255,0.5);
+  --overlay-color2: rgba(0,255,200,0.3);
+  --overlay-color3: rgba(0,128,255,0.2);
+
+  background: linear-gradient(to bottom,
+              var(--overlay-color1) 0%,
+              var(--overlay-color2) 50%,
+              var(--overlay-color3) 100%);
+  transition: background 1s linear; /* короткі плавні кроки */
+}
+
+
+
+
+.typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 10px;
+  background: #E5E5EA;
+  border-radius: 12px;
+  font-size: 18px;
+}
+
+.typing-indicator span {
+  width: 6px;
+  height: 6px;
+  background: #555;
+  border-radius: 50%;
+  display: inline-block;
+  animation: blink 1.2s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+  100% { opacity: 0.2; transform: translateY(0); }
+}
+#chat-toggle {
+  background: linear-gradient(90deg, #25ebca, #378b76);
+  background-size: 200% 200%;
+  animation: gradientMove 5s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
