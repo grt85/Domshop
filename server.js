@@ -30,9 +30,10 @@ app.use(cors({
 
 app.use(express.json());
 
-const filePath = path.join(__dirname, "subscribers.json");
+// === Шляхи до файлів ===
+const subscribersFile = path.join(__dirname, "subscribers.json");
 const ordersFile = path.join(__dirname, "orders.json");
-
+const chatFile = path.join(__dirname, "chat.json");
 // SMTP‑транспорт
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -229,6 +230,130 @@ app.post("/order", async (req, res) => {
     res.status(500).json({ success: false, message: "Ошибка сервера" });
   }
 });
+
+
+
+// OpenAI‑агент
+/*app.post("/agent", async (req, res) => {
+  try {
+    const { question } = req.body;
+    const answer = await DomshopAgent.chat(question);
+    res.json({ success: true, answer });
+  } catch (err) {
+    console.error("❌ Помилка OpenAI‑агента:", err);
+    res.status(500).json({ success: false, message: "Помилка сервера" });
+  }
+});
+
+// Fallback‑агент
+app.post("/fallback-agent", async (req, res) => {
+  try {
+    const { question } = req.body;
+    const answer = await DomshopAgentFallback.chat(question);
+
+    // ✅ ВАЖЛИВО: повертаємо саме { answer: {...} }
+    res.json({ answer });
+  } catch (err) {
+    console.error("❌ Помилка fallback‑агента:", err);
+    res.status(500).json({ answer: { text: "⚠️ Помилка сервера" } });
+  }
+});*/
+
+
+
+// === Fallback‑агент ===
+app.post("/fallback-agent", async (req, res) => {
+  const { question } = req.body;
+  if (!question || typeof question !== "string") {
+    return res.json({ answer: { text: "⚠️ Порожній запит. Спробуйте ще раз." } });
+  }
+
+  const q = question.toLowerCase().trim();
+
+  // Email
+  if (/email/i.test(q)) {
+    const email = question.split(" ").pop() || "";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.json({ answer: { text: "❌ Некоректний email. Спробуйте ще раз." } });
+    }
+    const subs = await readJSON(subscribersFile);
+    const found = subs.find(s => s.email === email);
+    return res.json({
+      answer: {
+        text: found
+          ? `✅ Email ${email} підписаний з ${new Date(found.date).toLocaleString("uk-UA")}.`
+          : `ℹ️ Email ${email} ще не підписаний.`
+      }
+    });
+  }
+
+  // Замовлення
+  if (/order|замовлення/i.test(q)) {
+    const id = parseInt(question.replace(/\D/g, ""), 10);
+    if (isNaN(id)) {
+      return res.json({ answer: { text: "❌ Номер замовлення має бути числом." } });
+    }
+    const orders = await readJSON(ordersFile);
+    const order = orders.find(o => o.id === id);
+    if (!order) {
+      return res.json({ answer: { text: `❌ Замовлення #${id} не знайдено.` } });
+    }
+
+    const items = order.cart.map(i => `${i.name} × ${i.qty}`).join(", ");
+    const total = order.cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+    return res.json({
+      answer: {
+        text: `📦 Замовлення #${order.id}\n` +
+              `👤 Клієнт: ${order.name} ${order.surname}\n` +
+              `📞 Телефон: ${order.phone}\n` +
+              `🛒 Товари: ${items}\n` +
+              `💰 Сума: ${total} ₴\n` +
+              `📅 Дата: ${new Date(order.date).toLocaleString("uk-UA")}\n` +
+              `🚚 Доставка: ${order.delivery}` +
+              (order.city ? `, ${order.city}` : "") +
+              (order.branch ? `, ${order.branch}` : "")
+      }
+    });
+  }
+
+  // FAQ
+  const faqResponses = {
+    delivery: "🚚 Ми доставляємо через Нову Пошту та кур'єром.",
+    payment: "💳 Оплата можлива карткою онлайн або при отриманні.",
+    discount: "🎁 У нас діють промокоди та акції. Слідкуйте за розділом 'Sale'.",
+    contact: "📞 Контакти підтримки:\nТелефон: +380 50 123 45 67\nEmail: support@domshop.com"
+  };
+  if (faqResponses[q]) {
+    return res.json({ answer: { text: faqResponses[q] } });
+  }
+
+  // Привітання
+  if (/^(privet|прив(іт)?)$/i.test(q)) {
+    return res.json({
+      answer: {
+        text: "Привіт 👋 Радий вас бачити! Оберіть дію:",
+        buttons: [
+          { label: "✅ Перевірити email", action: "checkEmail" },
+          { label: "📦 Замовлення", action: "checkOrder" },
+          { label: "📞 Контакти", action: "contact" },
+          { label: "🚚 Доставка", action: "delivery" },
+          { label: "💳 Оплата", action: "payment" },
+          { label: "🎁 Знижки", action: "discount" }
+        ]
+      }
+    });
+  }
+
+  // За замовчуванням
+  res.json({
+    answer: {
+      text: "ℹ️ Я можу перевірити email або замовлення. Спробуйте: 'Перевірити email test@example.com' або 'Замовлення #123'."
+    }
+  });
+});
+
 
 
 app.listen(PORT, () => {
