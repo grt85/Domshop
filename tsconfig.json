@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "rootDir": "./",
+    "outDir": "./dist",
+
+    "paths": {
+      "@lobehub/agent-runtime": ["./packages/agent-runtime"],
+      "@lobehub/model-runtime": ["./packages/model-runtime"]
+    }
+  },
+  "include": [
+    "src",
+    "server",
+    "packages",
+    "domshopAgent.ts",
+    "demo.ts",
+    "domshopAgentFallback.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
